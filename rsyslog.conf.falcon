@@ -1,0 +1,2 @@
+:rawmsg, contains, "falcon-" /logs/mgc/falcon.log
+:rawmsg, contains, "falcon-" stop

@@ -1,0 +1,29 @@
+/var/log/syslog
+{
+        rotate 7
+        daily
+        missingok
+        notifempty
+        delaycompress
+        compress
+        postrotate
+                kill -s HUP `cat /var/run/rsyslogd.pid`
+        endscript
+}
+
+/var/log/maillog
+/var/log/secure
+/var/log/cron
+/var/log/boot.log
+{
+        rotate 4
+        weekly
+        missingok
+        notifempty
+        compress
+        delaycompress
+        sharedscripts
+        postrotate
+                kill -s HUP `cat /var/run/rsyslogd.pid`
+        endscript
+}

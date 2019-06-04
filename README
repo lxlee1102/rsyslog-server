@@ -1,0 +1,17 @@
+#
+#  For Rsyslog-Server docker images
+#
+
+# build
+docker build -t rsyslog-server:latest .
+
+# add filter config
+
+vim /etc/rsyslog.d/falcon
+:rawmsg, contains, "falcon-" /logs/mgc/falcon.log
+:rawmsg, contains, "falcon-" stop
+
+
+# note
+# /logs/mgc/*.log  will rotate daily, max-rotate 180, minsize 1M
+#
