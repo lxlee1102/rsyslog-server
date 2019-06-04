@@ -1,16 +1,3 @@
-/var/log/syslog
-{
-        rotate 7
-        daily
-        missingok
-        notifempty
-        delaycompress
-        compress
-        postrotate
-                kill -s HUP `cat /var/run/rsyslogd.pid`
-        endscript
-}
-
 /var/log/maillog
 /var/log/secure
 /var/log/cron

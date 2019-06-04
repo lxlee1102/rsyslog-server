@@ -1,8 +1,8 @@
 /logs/mgc/*.log
 {
-        rotate 180
         daily
-	minsize 1M
+        rotate 180
+	minsize 10M
 	dateext
         missingok
         notifempty
