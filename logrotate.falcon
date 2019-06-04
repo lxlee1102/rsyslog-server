@@ -1,4 +1,4 @@
-/logs/mgc/*.log
+/logs/openfalcon/falcon.log
 {
         daily
         rotate 180

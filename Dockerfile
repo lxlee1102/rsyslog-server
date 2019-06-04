@@ -2,7 +2,7 @@ FROM alpine:latest
 LABEL maintainer shon.li
 USER root
 
-RUN  mkdir -p /logs/mgc/ && \
+RUN  mkdir -p /logs/openfalcon/ && \
      mkdir -p /etc/rsyslog.d/ && \
      mkdir -p /etc/logrotate.d/ && \
      apk add --no-cache ca-certificates bash git wget curl vim logrotate
@@ -15,7 +15,7 @@ RUN  cd /etc/apk/keys && \
 COPY startup.sh /
 COPY localtime.shanghai /etc/localtime 
 COPY logrotate.rsyslog /etc/logrotate.d/rsyslog
-COPY logrotate.mgc /etc/logrotate.d/falcon
+COPY logrotate.falcon /etc/logrotate.d/falcon
 COPY rsyslog.conf /etc/rsyslog.conf
 COPY rsyslog.conf.falcon /etc/rsyslog.d/falcon
 

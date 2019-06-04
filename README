@@ -2,16 +2,46 @@
 #  For Rsyslog-Server docker images
 #
 
-# build
-docker build -t rsyslog-server:latest .
-
-# add filter config
-
-vim /etc/rsyslog.d/falcon
-:rawmsg, contains, "falcon-" /logs/mgc/falcon.log
-:rawmsg, contains, "falcon-" stop
+## build
+    docker build -t rsyslog-server:latest .
 
 
-# note
-# /logs/mgc/*.log  will rotate daily, max-rotate 180, minsize 1M
-#
+## run
+    docker run -tid rsyslog-server:latest
+
+
+## logrotate  default:
+    /logs/openfalcon/*.log  will rotate daily, max-rotate 180, minsize 10M
+
+
+## rsyslog default :
+    vim /etc/rsyslog.d/falcon-rsyslog
+    :rawmsg, contains, "falcon-" /logs/openfalcon/falcon.log
+    :rawmsg, contains, "falcon-" stop
+
+
+## User-define configs for K8S
+    logrotate-conf:
+    eg.
+        vim /etc/logrotate.d/xxx-logrotate
+        /logs/xxx.log
+        {
+                daily
+                rotate 180
+                minsize 10M
+                dateext
+                missingok
+                notifempty
+                delaycompress
+                compress
+                postrotate
+                        kill -s HUP `cat /var/run/rsyslogd.pid`
+                endscript
+        }
+
+    rsyslog-conf:
+    eg.
+        vim /etc/rsyslog.d/xxx-rsyslog
+        :rawmsg, contains, "xxx" /logs/xxx.log
+        :rawmsg, contains, "xxx" stop
+
