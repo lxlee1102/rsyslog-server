@@ -1,0 +1,2 @@
+:rawmsg, contains, "mcs-" /logs/mcs/mcs.log
+:rawmsg, contains, "mcs-" stop

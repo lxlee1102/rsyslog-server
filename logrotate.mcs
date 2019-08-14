@@ -1,0 +1,14 @@
+/logs/mcs/*.log
+{
+        daily
+        rotate 180
+	minsize 10M
+	dateext
+        missingok
+        notifempty
+        delaycompress
+        compress
+        postrotate
+                kill -s HUP `cat /var/run/rsyslogd.pid`
+        endscript
+}

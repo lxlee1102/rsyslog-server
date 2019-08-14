@@ -16,8 +16,10 @@ COPY startup.sh /
 COPY localtime.shanghai /etc/localtime 
 COPY logrotate.rsyslog /etc/logrotate.d/rsyslog
 COPY logrotate.falcon /etc/logrotate.d/falcon
+COPY logrotate.mcs /etc/logrotate.d/mcs
 COPY rsyslog.conf /etc/rsyslog.conf
 COPY rsyslog.conf.falcon /etc/rsyslog.d/falcon
+COPY rsyslog.conf.mcs /etc/rsyslog.d/mcs
 
 WORKDIR /
 
