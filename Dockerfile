@@ -1,16 +1,11 @@
-FROM alpine:latest
+FROM harbor.cloudminds.com/library/ubuntu:bionic.CM-Beta-1.3
 LABEL maintainer shon.li
 USER root
 
-RUN  mkdir -p /logs/openfalcon/ && \
+RUN  mkdir -p /logs/ && \
      mkdir -p /etc/rsyslog.d/ && \
      mkdir -p /etc/logrotate.d/ && \
-     apk add --no-cache ca-certificates bash git wget curl vim logrotate
-
-RUN  cd /etc/apk/keys && \
-     wget http://alpine.adiscon.com/rsyslog@lists.adiscon.com-5a55e598.rsa.pub && \
-     echo 'http://alpine.adiscon.com/3.7/stable' >> /etc/apk/repositories && \
-     apk update && apk add rsyslog
+     apt-get install -y bash git wget curl vim logrotate rsyslog
 
 COPY startup.sh /
 COPY localtime.shanghai /etc/localtime 
@@ -20,6 +15,10 @@ COPY logrotate.mcs /etc/logrotate.d/mcs
 COPY rsyslog.conf /etc/rsyslog.conf
 COPY rsyslog.conf.falcon /etc/rsyslog.d/falcon
 COPY rsyslog.conf.mcs /etc/rsyslog.d/mcs
+
+ENV PROJECT=mcs
+ENV MODULE=logs
+ENV LOGPATH=/logs
 
 WORKDIR /
 
