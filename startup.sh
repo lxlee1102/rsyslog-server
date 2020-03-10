@@ -1,6 +1,6 @@
 #!/bin/bash
 
-/usr/sbin/crond -b
+/usr/sbin/cron
 
 if [ -f "/var/run/rsyslogd.pid" ] ; then
 	rm -rf /var/run/rsyslogd.pid
