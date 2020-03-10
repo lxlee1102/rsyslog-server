@@ -1,5 +1,6 @@
 #!/bin/bash
 
+chmod 644 /etc/logrotate.d/*
 /usr/sbin/cron
 
 if [ -f "/var/run/rsyslogd.pid" ] ; then
