@@ -7,10 +7,12 @@ RUN  mkdir -p /logs && \
 
 COPY startup.sh /
 COPY logrotate.rsyslog /etc/logrotate.d/rsyslog
+COPY logrotate.probelog /etc/logrotate.d/probelog
 COPY rsyslog.conf /etc/rsyslog.conf
+COPY rsyslog.conf.probelog /etc/rsyslog.d/probelog
 
 ENV PROJECT=mcs
-ENV MODULE=mcs-logs
+ENV MODULE=falcon-probelog
 ENV LOGPATH=/logs
 
 WORKDIR /

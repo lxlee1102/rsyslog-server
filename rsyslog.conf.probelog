@@ -1,0 +1,2 @@
+:rawmsg, contains, "probe-log" /logs/probelog/falcon-probe.log
+:rawmsg, contains, "probe-log" stop

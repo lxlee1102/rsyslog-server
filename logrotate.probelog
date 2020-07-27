@@ -1,0 +1,12 @@
+/logs/probelog/*.log
+{
+        monthly
+        rotate 6
+	minsize 100000M
+	dateext
+        missingok
+        notifempty
+        postrotate
+                kill -s HUP `cat /var/run/rsyslogd.pid`
+        endscript
+}
